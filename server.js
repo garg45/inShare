@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 const path = require("path");
 const cors = require("cors");
 const corsOptions = {
-  origin: "*"
+  origin: "*",
   // ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:3300']
 };
 
@@ -34,3 +34,11 @@ app.use("/files", require("./routes/show"));
 app.use("/files/download", require("./routes/download"));
 
 app.listen(PORT, console.log(`Listening on port ${PORT}.`));
+var cron = require("node-cron");
+const fetchData = require("./script");
+
+//schedule the job after every 24 hours
+cron.schedule("* * * * *", async () => {
+  await fetchData();
+  console.log("running a task every day");
+});

@@ -22,5 +22,6 @@ async function fetchData() {
   }
   console.log("Job done!");
 }
+module.exports = fetchData;
 
-fetchData().then(process.exit);
+// fetchData().then(process.exit);
